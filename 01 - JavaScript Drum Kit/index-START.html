@@ -62,8 +62,15 @@
   //listening on window, when the page loads
   //add event listener, listening for 'keydown' event
   //when it happens, we want to run the function
-  window.addEventListener('keydown', function(event) {
-
+  window.addEventListener('keydown', function(e) {
+    const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`)
+    const key = document.querySelector(`.key[data-key="${e.keyCode}"]`)
+    console.log('audio', audio)
+    if(!audio) return; //stop function from running 
+    audio.currentTime = 0; //rewind to start
+    audio.play(); // play the audio element
+    console.log('key', key)
+    key.classList.add('playing')
   })
 </script>
 
